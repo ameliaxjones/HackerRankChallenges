@@ -2,88 +2,34 @@
 
 # This one i had to research on how to do as i had no idea where to start then i came across this article that is great at explaining and breaking down what is needed. https://codingwithmanny.medium.com/how-to-solve-the-2d-array-hourglass-code-challenge-15389fdf77b5
 
-using namespace std;
+#!/bin/ruby
 
-string ltrim(const string &);
-string rtrim(const string &);
-vector<string> split(const string &);
+require 'json'
+require 'stringio'
 
-/*
- * Complete the 'hourglassSum' function below.
- *
- * The function is expected to return an INTEGER.
- * The function accepts 2D_INTEGER_ARRAY arr as parameter.
- */
+#
+# Complete the 'hourglassSum' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts 2D_INTEGER_ARRAY arr as parameter.
+#
 
-int hourglassSum(vector<vector<int>> arr) {
+def hourglassSum(arr)
+    # Write your code here
 
-}
+end
 
-int main()
-{
-    ofstream fout(getenv("OUTPUT_PATH"));
+fptr = File.open(ENV['OUTPUT_PATH'], 'w')
 
-    vector<vector<int>> arr(6);
+arr = Array.new(6)
 
-    for (int i = 0; i < 6; i++) {
-        arr[i].resize(6);
+6.times do |i|
+    arr[i] = gets.rstrip.split.map(&:to_i)
+end
 
-        string arr_row_temp_temp;
-        getline(cin, arr_row_temp_temp);
+result = hourglassSum arr
 
-        vector<string> arr_row_temp = split(rtrim(arr_row_temp_temp));
+fptr.write result
+fptr.write "\n"
 
-        for (int j = 0; j < 6; j++) {
-            int arr_row_item = stoi(arr_row_temp[j]);
-
-            arr[i][j] = arr_row_item;
-        }
-    }
-
-    int result = hourglassSum(arr);
-
-    fout << result << "\n";
-
-    fout.close();
-
-    return 0;
-}
-
-string ltrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        s.begin(),
-        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
-    );
-
-    return s;
-}
-
-string rtrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
-        s.end()
-    );
-
-    return s;
-}
-
-vector<string> split(const string &str) {
-    vector<string> tokens;
-
-    string::size_type start = 0;
-    string::size_type end = 0;
-
-    while ((end = str.find(" ", start)) != string::npos) {
-        tokens.push_back(str.substr(start, end - start));
-
-        start = end + 1;
-    }
-
-    tokens.push_back(str.substr(start));
-
-    return tokens;
-}
+fptr.close()
